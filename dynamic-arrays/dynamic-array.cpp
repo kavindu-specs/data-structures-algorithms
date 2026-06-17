@@ -45,6 +45,21 @@ class DynamicArray{
             _size++;
         }
 
+        void remove(){
+            if(_size == 0){
+                return;
+            }
+            data[_size -1] = 0;
+            _size--;
+
+            if(_capacity/2 == _size && _capacity % _size == 0 && _capacity != _initialCapacity){
+                int* _tmp = new int[_size];
+                copy(data, _tmp, _size);
+                data = _tmp;
+                _capacity = _size;
+            }
+        }
+
         void print(){
             for(int i =0; i<_size;i++){
                 cout << data[i] << " ";
